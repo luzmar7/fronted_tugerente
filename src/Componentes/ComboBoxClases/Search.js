@@ -13,7 +13,6 @@
     * obtenerValorItem: Función que se encarga de enviar el valorItem
     * onChangeCategoria: Función que se envia al momento de hacer el OnChange, para la categoria.
     * onChangeItem: Función que se envia al momento de hacer el OnChange, para el item..
-    * @type {{, , , , , }}
     */
    static propTypes = {
      placeholderCategoria: PropTypes.string,

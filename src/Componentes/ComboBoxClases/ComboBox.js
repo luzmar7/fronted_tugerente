@@ -133,7 +133,7 @@ class ComboBox extends Component {
     desplegable: false,
     valorPadre: '',
     id: '',
-    visibleCategoria: true,
+    visibleCategoria: false,
     visibleItem: true,
     estiloCampo: {},
     tipoIteraccion: null,

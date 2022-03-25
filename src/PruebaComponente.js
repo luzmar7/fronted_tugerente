@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import ComboBox from './Componentes/ComboBox/ComboBox'
+import ComboBox from './Componentes/ComboBoxClases/ComboBox'
+import ComboBoxH from './Componentes/ComboBoxHooks/ComboBoxH'
 
 class PruebaComponente extends Component {
   /**
@@ -67,6 +68,13 @@ class PruebaComponente extends Component {
 
         <ComboBox ref='TipoMulta'
           etiqueta={'Hola Mundo'}
+          visible={true}
+          datos={this.state.lista}
+          valor={1}
+          filtroItem= {'desc'}
+        />
+        <ComboBoxH 
+          etiqueta={'HOOKS'}
           visible={true}
           datos={this.state.lista}
           valor={1}
