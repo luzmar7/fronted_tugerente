@@ -1,0 +1,139 @@
+@import "../../temas/default-mixins";
+.containerGeneral {
+  box-sizing: border-box;
+  position: relative;
+  padding-top: .5em;
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-bottom: 20px;
+  .listaFiltradoCabecera{
+    background: #31708f;
+    //padding: .5em;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+
+    .listaFiltradoEtiqueta{
+      color: #fff;
+      height: 25px;
+      line-height: 15px;
+      padding: .5em;
+      @include navegador('msie'){
+        font-size: 14px;
+      }
+      @include navegador('firefox') {
+        font-size: 14px;
+      }
+      @include orientacion('Portrait'){
+        @include responsivo('tv'){
+          font-size: 14px;
+        }
+        @include responsivo('desktop'){
+          font-size: 14px;
+        }
+        @include responsivo('laptop'){
+          font-size: 14px;
+        }
+        @include responsivo('tablet'){
+          font-size: 14px;
+        }
+        @include responsivo('phablet'){
+          font-size: 14px;
+        }
+        @include responsivo('mobile'){
+          font-size: 11px;
+        }
+        @include responsivo('mini-mobile'){
+          font-size: 11px;
+        }
+      }
+      @include orientacion('Landscape'){
+        @include responsivo('tv'){
+          font-size: 14px;
+        }
+        @include responsivo('desktop'){
+          font-size: 14px;
+        }
+        @include responsivo('laptop'){
+          font-size: 14px;
+        }
+        @include responsivo('tablet'){
+          font-size: 14px;
+        }
+        @include responsivo('phablet'){
+          font-size: 14px;
+        }
+        @include responsivo('mobile'){
+          font-size: 11px;
+        }
+        @include responsivo('mini-mobile'){
+          font-size: 11px;
+        }
+      }
+    }
+    .listaFiltradoValor{
+      color:#000;
+      font-size: 14px;
+      padding: .5em;
+      background: #fff;
+      border: 1px solid #31708f;
+    }
+
+    .fa-chevron-circle-down{
+      position: absolute;
+      right:16px;
+      left: auto;
+      top:7px;
+      color: #fff;
+    }
+    .fa-close{
+      margin: 0 .5em 0 0;
+      color: #bce8f1;
+    }
+  }
+  .listaFiltradoDesplegable{
+    display: block;
+  }
+  .listaFiltradoNoDesplegable
+  {
+    display: none;
+  }
+  .listaFiltradoContainerCategoria{
+    border: 1px solid #31708f;
+    padding: .5em;
+    height: 300px;
+    overflow: auto;
+
+    .SearchBar{
+      /*background: lightseagreen;*/
+      margin: .5em 0;
+
+      .input-style {
+        margin-top: .5em;
+        width: 100%;
+      }
+    }
+    .categoria{
+      background: #c0c0c0;
+      padding: .5em;
+      margin: .5em 0;
+    }
+  }
+  .mensajeEstado {
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .error{
+    //border: 1px solid tomato;
+    color: tomato;
+    position: absolute;
+  }
+  .success{
+    //border: 1px solid lightseagreen;
+    color: lightgreen;
+  }
+}
