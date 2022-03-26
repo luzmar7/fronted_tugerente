@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import ItemH from './itemH'
 const uuid = require('uuid')
-const CategoriaH = (props) => {
-  console.log('CATEGORIA H', props)
+const CategoriaH = ({nombreCategoria, items, filtroCategoria, filtroItem, onClickItem}) => {
   /**
   * nombreCategoria: Variable que maneja el nombre de la categoria.
   * items: Array que le llega desde el componente principal.
@@ -12,11 +11,7 @@ const CategoriaH = (props) => {
   * onClickItem: Evento que se activa desde la pantalla principal.
   */
 
-  const [nombreCategoria, setNombreCategoria] = useState(props.nombreCategoria); 
-  const [items, setItems] = useState(props.items); 
-  const [filtroCategoria, setfiltroCategoria] = useState(props.filtroCategoria); 
-  const [filtroItem, setfiltroItem] = useState(props.filtroItem);
-  const [onClickItem, setOnClickItem] = useState(props.onClickItem);
+
 
 
 

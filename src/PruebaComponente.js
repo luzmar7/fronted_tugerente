@@ -77,7 +77,7 @@ class PruebaComponente extends Component {
           etiqueta={'HOOKS'}
           visible={true}
           datos={this.state.lista}
-          valor={'asdasd'}
+          valor={1}
           filtroItem= {''}
           visibleItem={true}
           placeholderItems={'hola mundo'}

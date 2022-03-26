@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import CategoriaH from './CategoriaH'
 const uuid = require('uuid')
-const ContenedorCategoriaH = (props) => {
-  console.log('CONTENEDORCATEGORIAH', props)
+const ContenedorCategoriaH = ({categoria, filtroCategoria, filtroItem, onClickItem, estiloCampo}) => {
     /**
     * categoria: Array que recibe del Padre.
     * filtroCategoria: Variable que maneja el input de las categorias.
@@ -17,16 +16,21 @@ const ContenedorCategoriaH = (props) => {
        tamanio: 20
       }
     */
-   const [categoria, setCategoria] = useState(props.categoria);
-   const [filtroCategoria, setFiltroCategoria] = useState(props.filtroCategoria);
-   const [filtroItem, setFiltroItem] = useState(props.filtroItem);
-   const [onClickItem, setOnClickItem] = useState(props.onClickItem);
-   const [estiloCampo, setEstiloCampo] = useState(props.estiloCampo);
+   const [categoria2, setCategoria] = useState(categoria);
+   const [filtroCategoria2, setFiltroCategoria] = useState(filtroCategoria);
+   const [filtroItem2, setFiltroItem] = useState(filtroItem);
+   // const [onClickItem2, setOnClickItem2] = useState(onClickItem);
+   const [estiloCampo2, setEstiloCampo] = useState(estiloCampo);
+  
+
+    console.log('funcion SASUKE', onClickItem)
+
+      
     ContenedorCategoriaH.propTypes = {
       categoria : PropTypes.array,
       filtroCategoria : PropTypes.string,
       filtroItem : PropTypes.string,
-      onClickItem : PropTypes.func,
+      onClickItem2 : PropTypes.func,
       estiloCampo: PropTypes.object
 
     }
@@ -38,35 +42,44 @@ const ContenedorCategoriaH = (props) => {
     }
 
 
+    // useEffect (() => {
+
+      
+    // },[props.onClickItem])
+
+    // setOnClickItem2(props.onClickItem)
+
     let categoriaL = []
     let categoriaFiltrada = []
     if (categoria !== null) {
+      console.log('categoria  SASUKE')
       if (filtroCategoria !== '') {
-        categoria.filter((item) => {
+        categoria2.filter((item) => {
           if (item.categoria.toLowerCase().indexOf(filtroCategoria.toLowerCase()) > -1) {
             categoriaFiltrada.push(item)
           }
         })
-        categoriaL.push(<CategoriaH key={uuid.v4()} items={categoriaFiltrada} filtroItem={filtroItem}
+        categoriaL.push(<CategoriaH key={uuid.v4()} items={categoriaFiltrada} filtroItem={filtroItem2}
           onClickItem={onClickItem} />)
       } else {
-        if (filtroItem !== '') {
+        if (filtroItem2 !== '') {
           // console.log('hay filtro item de categoria ContendorCategoria')
-          categoria.filter((item) => {
-            if (item.desc.toLowerCase().indexOf(filtroItem.toLowerCase()) > -1) {
+          categoria2.filter((item) => {
+            if (item.desc.toLowerCase().indexOf(filtroItem2.toLowerCase()) > -1) {
               categoriaFiltrada.push(item)
             }
           })
-          categoriaL.push(<CategoriaH key={uuid.v4()} items={categoriaFiltrada} filtroItem={filtroItem}
+          categoriaL.push(<CategoriaH key={uuid.v4()} items={categoriaFiltrada} filtroItem={filtroItem2}
             onClickItem={onClickItem} />)
         } else {
-          categoriaL.push(<CategoriaH key={uuid.v4()} items={categoria} filtroItem={filtroItem}
+          categoriaL.push(<CategoriaH key={uuid.v4()} items={categoria2} filtroItem={filtroItem2}
             onClickItem={onClickItem} />)
         }
       }
     } else {
       categoria.push(<h4>Cargando .... </h4>)
     }
+
 
   return (
     <div className='ContainerCategoria' style={estiloCampo}>

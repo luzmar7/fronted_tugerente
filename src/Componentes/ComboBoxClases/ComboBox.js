@@ -310,7 +310,7 @@ class ComboBox extends Component {
    * Funcion que se activa para enviar a los contenedor categoria.
    */
   obtenerDatoItem (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) {
-    console.log('obtenerDatoItem CampoListaFiltrado', valorMostrar, desc, valor, valorPadre,
+    console.log('obtenerDatoItem CLASES', valorMostrar, desc, valor, valorPadre,
       tipoIteraccion, idClasificadorCliente)
     this.setState({
       desplegable: !this.state.desplegable,

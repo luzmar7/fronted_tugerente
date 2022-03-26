@@ -128,7 +128,48 @@ const ComboBoxH = (props) => {
     tipoIteraccion: null,
     idClasificadorCliente: null
   }
+  useEffect (() => {
+    console.log('SASUKE USEFECT')
+    obtenerSeleccionado(valor, valorPadre, datos, tipoIteraccion, idClasificadorCliente)
 
+
+  },[])
+
+  /**
+   * Metodo que recibe el valor enviado desde el padre para mostrarlo en la pantalla.
+   */
+  const obtenerSeleccionado = (pValor, pValorPadre, pDatos, ptipoIteraccion = null, pidClasificadorCliente = null) => {
+    console.log('obtenerSeleccionado', pValor, pValorPadre)
+    pValor = (pValor !== null) ? ConvertirCadena(pValor) : pValor
+    let datos = pDatos
+    let sw = true
+    for (let i in datos) {
+      if (pValor === ConvertirCadena(datos[i].idItem)) {
+        sw = false
+        setValor(pValor) 
+        setValorMostrado(datos[i].desc)
+        setValorPadre(pValorPadre)
+        setTipoIteraccion(ptipoIteraccion)
+        setIdClasificadorCliente(pidClasificadorCliente)
+        break
+      }
+    }
+
+
+  }
+
+  /**
+   * Se encarga de devolver la cadena vacia o con toString()
+   */
+  const ConvertirCadena = (pValor) => {
+    if (pValor !== undefined && pValor !== null) {
+      return pValor.toString()
+    } else {
+      return pValor
+    }
+
+  }  
+  
 
   /**
    * Funcion que se activa al momento de hacer el click.
@@ -144,7 +185,7 @@ const ComboBoxH = (props) => {
     const filtrarCategoria = useCallback(
       (i) => {
         console.log('Click happened', i);
-        setFiltroCategoria('hola')
+        // setFiltroCategoria('hola')
       },
       [], // Tells React to memoize regardless of arguments.
     );
@@ -153,7 +194,7 @@ const ComboBoxH = (props) => {
    * Funcion que se activa para enviar a los contenedor categoria.
    */
   const obtenerDatoItem = (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) => {
-    console.log('obtenerDatoItem CampoListaFiltrado', valorMostrar, desc, valor, valorPadre,
+    console.log('obtenerDatoItem HOOKS', valorMostrar, desc, valor, valorPadre,
       tipoIteraccion, idClasificadorCliente)
       setDesplegable(!desplegable)
       setValorSeleccionado(valorSeleccionado)
