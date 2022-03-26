@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const ItemH = ({valorMostrar, desc, tipoIteraccion, idClasificadorCliente, onClickItem, valor, valorPadre}) => {
+
   /**
   * valor: Valor que recibe del array enviado desde el Padre.
   * desc: Desc recibe del array enviado desde el padre.

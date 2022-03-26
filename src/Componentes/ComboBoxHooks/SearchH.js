@@ -5,8 +5,7 @@
  */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-const SearchH = (props) => {
-  console.log('SACURA CAPCAPTOR', props)
+const SearchH = ({ placeholderCategoria, placeholderItems, valorCategoria, valorItem, obtenerValorCategoria, obtenerValorItem, onChangeCategoria, onChangeItem, visibleCategoria, visibleItem}) => {
   /**
   * valorCategoria: Variable que almacena el valor entrante, para la categoria.
   * valorItem: Variable que almacena el valor entrante, para el item.
@@ -15,16 +14,6 @@ const SearchH = (props) => {
   * onChangeCategoria: Función que se envia al momento de hacer el OnChange, para la categoria.
   * onChangeItem: Función que se envia al momento de hacer el OnChange, para el item..
   */
-  const [placeholderCategoria, setPlaceholderCategoria] = useState(props.placeholderCategoria);
-  const [placeholderItems, setPlaceholderItems] = useState(props.placeholderItems);
-  const [valorCategoria, setValorCategoria] = useState(props.valorCategoria);
-  const [valorItem, setValorItem] = useState(props.valorItem);
-  const [obtenerValorCategoria, setObtenerValorCategoria] = useState(props.obtenerValorCategoria);
-  const [obtenerValorItem, setObtenerValorItem] = useState(props.obtenerValorItem);
-  const [onChangeCategoria, setOnChangeCategoria] = useState(props.onChangeCategoria);
-  const [onChangeItem, setOnChangeItem] = useState(props.onChangeItem);
-  const [visibleCategoria, setVisibleCategoria] = useState(props.visibleCategoria);
-  const [visibleItem, setVisibleItem] = useState(props.visibleItem);
 
   SearchH.propTypes = {
     placeholderCategoria: PropTypes.string,

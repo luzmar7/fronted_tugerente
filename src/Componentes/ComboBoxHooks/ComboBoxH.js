@@ -3,7 +3,7 @@
  * Componente que muestra un listado dividido en partes y con buscadores tanto para el titulo como el contenido.
  */
 
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SearchH from './SearchH'
 import ContenedorCategoriaH from './ContenedorCategoriaH'
@@ -11,7 +11,6 @@ import './ComboBoxH.scss'
 
 
 const ComboBoxH = (props) => {
-  console.log('lista sasuke', props)
   /**
    * datos: Array que recive del Padre el array debe estar declarado de la siguiente manera:
    todo let lista = [
@@ -63,16 +62,16 @@ const ComboBoxH = (props) => {
   const [valor, setValor] = useState(props.valor);
   const [habilitado, setHabilitado] = useState(props.habilitado);
   const [visible, setVisible] = useState(props.visible);
-  const [error, setError] = useState(props.error);
   const [mensajeError, setMensajeError] = useState(props.mensajeError);
   const [desplegable, setDesplegable] = useState(props.desplegable);
   const [valorPadre, setValorPadre] = useState(props.valorPadre);
   const [id, setId] = useState(props.id);
-  const [visibleCategoria, seVisibleCategoria] = useState(props.visibleCategoria);
+  const [visibleCategoria, setVisibleCategoria] = useState(props.visibleCategoria);
   const [visibleItem, setVisibleItem] = useState(props.visibleItem);
   const [estiloCampo, setEstiloCampo] = useState(props.estiloCampo);
   const [tipoIteraccion, setTipoIteraccion] = useState(props.tipoIteraccion);
   const [idClasificadorCliente, setIdClasificadorCliente] = useState(props.idClasificadorCliente);
+  console.log(setPlaceholderCategoria, setPlaceholderItems, setDatos, setEtiqueta, habilitado, setHabilitado, setVisible, mensajeError, setMensajeError, setVisibleCategoria, setVisibleItem, setEstiloCampo)
   
   ComboBoxH.propTypes = {
     placeholderCategoria: PropTypes.string,
@@ -89,7 +88,6 @@ const ComboBoxH = (props) => {
     ]),
     habilitado: PropTypes.bool,
     visible: PropTypes.bool,
-    error: PropTypes.bool,
     mensajeError: PropTypes.string,
     desplegable: PropTypes.bool,
     obtenerValor: PropTypes.func,
@@ -131,8 +129,6 @@ const ComboBoxH = (props) => {
   useEffect (() => {
     console.log('SASUKE USEFECT')
     obtenerSeleccionado(valor, valorPadre, datos, tipoIteraccion, idClasificadorCliente)
-
-
   },[])
 
   /**
@@ -154,8 +150,6 @@ const ComboBoxH = (props) => {
         break
       }
     }
-
-
   }
 
   /**
@@ -167,28 +161,13 @@ const ComboBoxH = (props) => {
     } else {
       return pValor
     }
-
-  }  
-  
-
+  }
   /**
    * Funcion que se activa al momento de hacer el click.
    */
     const handleOnClick = () => {
       setDesplegable( !desplegable )
     }
-    /**
-   * Funcion encargada de recibir los datos del input Categoria.
-   */
-  
-
-    const filtrarCategoria = useCallback(
-      (i) => {
-        console.log('Click happened', i);
-        // setFiltroCategoria('hola')
-      },
-      [], // Tells React to memoize regardless of arguments.
-    );
 
   /**
    * Funcion que se activa para enviar a los contenedor categoria.
@@ -199,14 +178,7 @@ const ComboBoxH = (props) => {
       setDesplegable(!desplegable)
       setValorSeleccionado(valorSeleccionado)
       validar(valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente)
-    // this.refs.Search.clear()
-    // if (obtenerValor !== undefined && obtenerValor !== null) {
-    //   setTimeout(() => {
-    //     obtenerValor(valor, desc, tipoIteraccion, idClasificadorCliente)        
-    //   }, 1000);
-    // }
   }
-
 
     /**
    * Funcion que valida los datos del array del padre como el valor, desc.
@@ -216,21 +188,24 @@ const ComboBoxH = (props) => {
         setValorMostrado(desc)
         setId(valorMostrar)
         setValor(valor)
-        setError(false)
         setValorPadre(valorPadre)
         setTipoIteraccion(tipoIteraccion)
         setIdClasificadorCliente(idClasificadorCliente)
       }
     }
-    /**
+  /**
    * Funcion encargada de validar los datos del input item.
    */
-  const filtrarItem = useCallback(
-    (i) => {
-      console.log('Click happened', i);
-    },
-    [], // Tells React to memoize regardless of arguments.
-  );
+  const filtrarItem = (e) => {
+    setfiltroItem(e.target.value)
+  }
+
+  /**
+   * Funcion encargada de recibir los datos del input Categoria.
+  */
+  const filtrarCategoria = (e) => {
+    setFiltroCategoria(e.target.value)
+  } 
   return (
     <div className='containerGeneral' hidden={!visible}>
       <div className={'listaFiltradoCabecera'} onClick={handleOnClick}>
