@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
+/**
+ * Created by Mariluz Vargas on 25/03/2022
+ * Componente que muestra un listado dividido en partes y con buscadores tanto para el titulo como el contenido.
+ */
+
+import React, { useState, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import SearchH from './SearchH'
+import ContenedorCategoriaH from './ContenedorCategoriaH'
 import './ComboBoxH.scss'
+
 
 const ComboBoxH = (props) => {
   console.log('lista sasuke', props)
@@ -47,7 +55,7 @@ const ComboBoxH = (props) => {
   const [placeholderCategoria, setPlaceholderCategoria] = useState(props.placeholderCategoria);
   const [placeholderItems, setPlaceholderItems] = useState(props.placeholderItems);
   const [datos, setDatos] = useState(props.datos);
-  const [filtroCategoria, setFiltroCategoria] = useState(props.filtroCategoria);
+  const [filtroCategoria, setFiltroCategoria] = useState('Empresas');
   const [filtroItem, setfiltroItem] = useState(props.filtroItem);
   const [valorSeleccionado, setValorSeleccionado] = useState(props.valorSeleccionado);
   const [valorMostrado, setValorMostrado] = useState(props.valorMostrado);
@@ -121,13 +129,100 @@ const ComboBoxH = (props) => {
     idClasificadorCliente: null
   }
 
+
+  /**
+   * Funcion que se activa al momento de hacer el click.
+   */
+    const handleOnClick = () => {
+      setDesplegable( !desplegable )
+    }
+    /**
+   * Funcion encargada de recibir los datos del input Categoria.
+   */
+  
+
+    const filtrarCategoria = useCallback(
+      (i) => {
+        console.log('Click happened', i);
+        setFiltroCategoria('hola')
+      },
+      [], // Tells React to memoize regardless of arguments.
+    );
+
+  /**
+   * Funcion que se activa para enviar a los contenedor categoria.
+   */
+  const obtenerDatoItem = (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) => {
+    console.log('obtenerDatoItem CampoListaFiltrado', valorMostrar, desc, valor, valorPadre,
+      tipoIteraccion, idClasificadorCliente)
+      setDesplegable(!desplegable)
+      setValorSeleccionado(valorSeleccionado)
+      validar(valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente)
+    // this.refs.Search.clear()
+    // if (obtenerValor !== undefined && obtenerValor !== null) {
+    //   setTimeout(() => {
+    //     obtenerValor(valor, desc, tipoIteraccion, idClasificadorCliente)        
+    //   }, 1000);
+    // }
+  }
+
+
+    /**
+   * Funcion que valida los datos del array del padre como el valor, desc.
+   */
+    const validar = (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) =>  {
+      if (valorMostrar !== 'Seleccione...') {
+        setValorMostrado(desc)
+        setId(valorMostrar)
+        setValor(valor)
+        setError(false)
+        setValorPadre(valorPadre)
+        setTipoIteraccion(tipoIteraccion)
+        setIdClasificadorCliente(idClasificadorCliente)
+      }
+    }
+    /**
+   * Funcion encargada de validar los datos del input item.
+   */
+  const filtrarItem = useCallback(
+    (i) => {
+      console.log('Click happened', i);
+    },
+    [], // Tells React to memoize regardless of arguments.
+  );
   return (
     <div className='containerGeneral' hidden={!visible}>
-      {visible}
-      {etiqueta}
-      {placeholderCategoria}
-      hola mundo
-      
+      <div className={'listaFiltradoCabecera'} onClick={handleOnClick}>
+        <div className={'listaFiltradoEtiqueta'}>
+          { etiqueta }
+        </div>
+        <div className={'listaFiltradoValor'}>
+          { valorMostrado }
+        </div>
+        <i className='fa fa-chevron-circle-down fa-lg' aria-hidden='true'> {'Component combobox HOOKS'} </i>
+      </div>
+      <div className={desplegable ? 'listaFiltradoContainerCategoria listaFiltradoDesplegable' : 'listaFiltradoContainerCategoria listaFiltradoNoDesplegable'}>
+        <div>
+        <SearchH
+          onChangeCategoria={filtrarCategoria}
+          onChangeItem={filtrarItem}
+          placeholderCategoria={placeholderCategoria}
+          placeholderItems={placeholderItems}
+          valor={valorSeleccionado}
+          visibleCategoria={visibleCategoria}
+          visibleItem={visibleItem}
+        />
+        </div>
+        <div>
+          <ContenedorCategoriaH
+            categoria={datos}
+            filtroCategoria={filtroCategoria}
+            filtroItem={filtroItem}
+            onClickItem={obtenerDatoItem}
+            estiloCampo={estiloCampo}
+          />
+        </div>
+      </div>
     </div>
   )
 }

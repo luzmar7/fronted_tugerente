@@ -375,7 +375,7 @@ class ComboBox extends Component {
           <div className={'listaFiltradoValor'} >
             {this.state.valorMostrado}
           </div>
-          <i className='fa fa-chevron-circle-down fa-lg' aria-hidden='true' > {'component combobox'} </i>
+          <i className='fa fa-chevron-circle-down fa-lg' aria-hidden='true' > {'component combobox CLASES'} </i>
         </div>
         <div className={this.state.desplegable ? 'listaFiltradoContainerCategoria listaFiltradoDesplegable'
           : 'listaFiltradoContainerCategoria listaFiltradoNoDesplegable'} >
@@ -400,9 +400,6 @@ class ComboBox extends Component {
               estiloCampo={this.state.estiloCampo}
             />
           </div>
-        </div>
-        <div className={mensajeEstado} hidden={!this.state.error} >
-          {this.state.mensajeError}
         </div>
       </div>
     )
