@@ -79,12 +79,12 @@ class PruebaComponenteClases extends Component {
   render () {
     return (
       <div >
-        <ComboBox ref='TipoMulta'
-          etiqueta={'Hola Mundo'}
+        <ComboBox 
+          etiqueta={'CLASES'}
+          placeholderItems={'buscar....'}
           visible={true}
-          datos={this.state.lista}
+          datos={lista}
           valor={1}
-          filtroItem= {'desc'}
         />
         <ComboBoxH
           etiqueta={'HOOKS'}

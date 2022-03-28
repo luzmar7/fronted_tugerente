@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import CategoriaH from './CategoriaH'
 const uuid = require('uuid')
 const ContenedorCategoriaH = ({categoria, filtroCategoria, filtroItem, onClickItem, estiloCampo}) => {
-    console.log('CATEGORIA H SASUKE', categoria)
-
     /**
     * categoria: Array que recibe del Padre.
     * filtroCategoria: Variable que maneja el input de las categorias.
@@ -35,7 +33,6 @@ const ContenedorCategoriaH = ({categoria, filtroCategoria, filtroItem, onClickIt
     let categoriaL = []
     let categoriaFiltrada = []
     if (categoria !== null) {
-      console.log('categoria  SASUKE')
       if (filtroCategoria !== '') {
         categoria.filter((item) => {
           if (item.categoria.toLowerCase().indexOf(filtroCategoria.toLowerCase()) > -1) {
@@ -46,7 +43,6 @@ const ContenedorCategoriaH = ({categoria, filtroCategoria, filtroItem, onClickIt
           onClickItem={onClickItem} />)
       } else {
         if (filtroItem !== '') {
-          // console.log('hay filtro item de categoria ContendorCategoria')
           categoria.filter((item) => {
             if (item.desc.toLowerCase().indexOf(filtroItem.toLowerCase()) > -1) {
               categoriaFiltrada.push(item)

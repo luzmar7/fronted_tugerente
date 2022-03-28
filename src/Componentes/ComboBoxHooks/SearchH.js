@@ -1,4 +1,3 @@
-
 /**
  * Created by Mariluz Vargas on 25/03/2022.
  * Sub Componente que se encarga de manejar los Inputs.
@@ -35,8 +34,6 @@ const SearchH = ({ placeholderCategoria, placeholderItems, valorCategoria, valor
     visibleCategoria: false,
     visibleItem: true
   }
-
-
   return (
     <div className='SearchBar'>
       <div hidden={!visibleCategoria}>

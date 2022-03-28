@@ -86,7 +86,6 @@ class ComboBox extends Component {
 
   constructor (props) {
     super(props)
-    console.log('COMBO BOX NOMRAL', props)
 
     this.state = {
       placeholderCategoria: this.props.placeholderCategoria,
@@ -142,7 +141,6 @@ class ComboBox extends Component {
   }
 
   componentWillMount () {
-    console.log('componentWillMount, lista filtrado', this)
     this.obtenerSeleccionado(this.state.valor, this.state.valorPadre, this.state.datos, this.state.tipoIteraccion, this.state.idClasificadorCliente)
   }
   componentWillReceiveProps (nextProps) {
@@ -234,8 +232,6 @@ class ComboBox extends Component {
    * Funcion que valida los datos del array del padre como el valor, desc.
    */
   validar (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) {
-    console.log('validar CampoListaFiltrado', valorMostrar, desc, valor,
-      valorPadre, tipoIteraccion, idClasificadorCliente)
     if (valorMostrar !== 'Seleccione...') {
       this.setState({
         id: valorMostrar,
@@ -252,15 +248,11 @@ class ComboBox extends Component {
   /**
    * Metodo que recibe el valor enviado desde el padre para mostrarlo en la pantalla.
    */
-  obtenerSeleccionado (pValor, pValorPadre, pDatos, ptipoIteraccion = null,
-    pidClasificadorCliente = null) {
-    console.log('obtenerSeleccionado', pValor, pValorPadre)
+  obtenerSeleccionado (pValor, pValorPadre, pDatos, ptipoIteraccion = null, pidClasificadorCliente = null) {
     pValor = (pValor !== null) ? this.ConvertirCadena(pValor) : pValor
     let datos = pDatos // this.state.datos
-    let sw = true
     for (let i in datos) {
       if (pValor === this.ConvertirCadena(datos[i].idItem)) {
-        sw = false
         this.setState({
           valor: pValor,
           valorMostrado: datos[i].desc,
@@ -291,7 +283,6 @@ class ComboBox extends Component {
    * Funcion encargada de recibir los datos del input Categoria.
    */
   filtrarCategoria (valor) {
-    console.log('filtrarCategoria CampoListaFiltrado')
     this.setState({
       filtroCategoria: valor.target.value
     })
@@ -301,7 +292,6 @@ class ComboBox extends Component {
    * Funcion encargada de validar los datos del input item.
    */
   filtrarItem (valor) {
-    console.log('ValorItem CampoListaFiltrado')
     this.setState({
       filtroItem: valor.target.value
     })
@@ -311,8 +301,6 @@ class ComboBox extends Component {
    * Funcion que se activa para enviar a los contenedor categoria.
    */
   obtenerDatoItem (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) {
-    console.log('obtenerDatoItem CLASES', valorMostrar, desc, valor, valorPadre,
-      tipoIteraccion, idClasificadorCliente)
     this.setState({
       desplegable: !this.state.desplegable,
       valorSeleccionado: this.state.valorSeleccionado
@@ -349,7 +337,6 @@ class ComboBox extends Component {
    * Funcion que se activa al momento de hacer el click.
    */
   handleOnClick (e) {
-    console.log('handleOnClick CampoListaFiltrado', this)
     e.preventDefault()
     if (this.state.habilitado) {
       this.refs.Search.clear()
@@ -364,8 +351,6 @@ class ComboBox extends Component {
 
 
   render () {
-    console.log('render CampoListaFiltrado', this.state)
-    let mensajeEstado = 'mensajeEstado ' + (this.state.error ? 'error' : 'success')
     return (
       <div className='containerGeneral' hidden={!this.state.visible}>
         <div className={'listaFiltradoCabecera'}

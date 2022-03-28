@@ -6,7 +6,6 @@
  import PropTypes from 'prop-types'
  
  class Item extends Component {
- 
    /**
     * valor: Valor que recibe del array enviado desde el Padre.
     * desc: Desc recibe del array enviado desde el padre.

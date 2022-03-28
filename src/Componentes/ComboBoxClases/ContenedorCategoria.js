@@ -72,7 +72,6 @@
    validarEstilosCampos () {
      let { estiloCampo } = this.state
      let estilo = {}
-     // console.log('estiloEtiquetaCampo', estiloCampo)
      if (estiloCampo !== undefined && estiloCampo !== null) {
        if (estiloCampo.cursiva !== undefined) {
          if (estiloCampo.cursiva) {
@@ -114,7 +113,6 @@
            onClickItem={this.state.onClickItem} />)
        } else {
          if (this.state.filtroItem !== '') {
-           // console.log('hay filtro item de categoria ContendorCategoria')
            this.state.categoria.filter((item) => {
              if (item.desc.toLowerCase().indexOf(this.state.filtroItem.toLowerCase()) > -1) {
                categoriaFiltrada.push(item)

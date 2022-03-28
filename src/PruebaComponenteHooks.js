@@ -59,7 +59,8 @@ const PruebaComponentesHooks = () => {
   return (
     <div>
       <ComboBox 
-        etiqueta={'Hola Mundo'}
+        etiqueta={'CLASES'}
+        placeholderItems={'buscar....'}
         visible={true}
         datos={lista}
         valor={1}
@@ -69,7 +70,7 @@ const PruebaComponentesHooks = () => {
         visible={true}
         datos={lista}
         valor={1}
-        placeholderItems={'buscar ..'}
+        placeholderItems={'buscar....'}
         valorMostrado={'MacDonals'}
       />
     </div>

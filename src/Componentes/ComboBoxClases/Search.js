@@ -43,6 +43,7 @@
      }
      this.handleOnChangeCategoria = this.handleOnChangeCategoria.bind(this)
      this.handleOnChangeItem = this.handleOnChangeItem.bind(this)
+     this.presionoEnter = this.presionoEnter.bind(this)
    }
  
    static defaultProps = {
@@ -52,14 +53,7 @@
      valorItem : '',
      visibleCategoria: true,
      visibleItem: true
-   }
- 
-   componentWillMount () {
-   }
- 
-   componentDidMount () {
-   }
- 
+   } 
    componentWillReceiveProps (nextProps) {
      if (nextProps.valorCategoria !== null) {
        this.setState({ valorCategoria: nextProps.valorCategoria })
@@ -98,19 +92,8 @@
    shouldComponentUpdate () {
      return true
    }
- 
-   componentWillUpdate () {
-   }
- 
-   componentDidUpdate () {
-   }
- 
-   componentWillUnmount () {
-   }
- 
    /**
     * Función que se activa al momento de hacer cambios en el input de Categoria.
-    * @param valor
     */
    handleOnChangeCategoria (valor) {
      this.setState({
@@ -123,7 +106,6 @@
  
    /**
     * Función que se activa al momento de hacer cambios en el input de Items.
-    * @param valor
     */
    handleOnChangeItem (valor) {
      this.setState({
@@ -141,9 +123,13 @@
      this.inputCategoria.value = ''
      this.inputIem.value = ''
    }
+
+
+  presionoEnter (valor) {
+    console.log('preciono enter', valor)
+  }
  
    render () {
-     // console.log('render Search')
      return (
        <div className='SearchBar'>
          <div hidden={!this.state.visibleCategoria}>
@@ -160,7 +146,17 @@
              type='text'
              placeholder={this.state.placeholderItems}
              onChange={this.state.onChangeItem}
+             onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                  this.setState({ message: e.target.value },
+                  () => {
+                      alert(this.state.message);
+                  });
+              }
+          }}
            />
+
+           
          </div>
        </div>
      )

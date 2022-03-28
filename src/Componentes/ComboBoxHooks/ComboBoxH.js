@@ -9,9 +9,7 @@ import SearchH from './SearchH'
 import ContenedorCategoriaH from './ContenedorCategoriaH'
 import './ComboBoxH.scss'
 
-
 const ComboBoxH = (props) => {
-  console.log('COMBO BOX SASUKE H', props)
   /**
    * datos: Array que recive del Padre el array debe estar declarado de la siguiente manera:
    todo let lista = [
@@ -71,7 +69,6 @@ const ComboBoxH = (props) => {
   const [estiloCampo, setEstiloCampo] = useState(props.estiloCampo);
   const [tipoIteraccion, setTipoIteraccion] = useState(props.tipoIteraccion);
   const [idClasificadorCliente, setIdClasificadorCliente] = useState(props.idClasificadorCliente);
-  console.log('SASUKE DATOS', props.datos)
  
   ComboBoxH.propTypes = {
     placeholderCategoria: PropTypes.string,
@@ -127,7 +124,6 @@ const ComboBoxH = (props) => {
     idClasificadorCliente: null
   }
   useEffect (() => {
-    console.log('SASUKE USEFECT')
     obtenerSeleccionado(valor, valorPadre, props.datos, tipoIteraccion, idClasificadorCliente)
   },[])
 
@@ -135,7 +131,6 @@ const ComboBoxH = (props) => {
    * Metodo que recibe el valor enviado desde el padre para mostrarlo en la pantalla.
    */
   const obtenerSeleccionado = (pValor, pValorPadre, pDatos, ptipoIteraccion = null, pidClasificadorCliente = null) => {
-    console.log('obtenerSeleccionado SASUKE...', pValor, pValorPadre)
     pValor = (pValor !== null) ? ConvertirCadena(pValor) : pValor
     let datos = pDatos
     let sw = true
@@ -175,8 +170,6 @@ const ComboBoxH = (props) => {
    * Funcion que se activa para enviar a los contenedor categoria.
    */
   const obtenerDatoItem = (valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente) => {
-    console.log('obtenerDatoItem HOOKS', valorMostrar, desc, valor, valorPadre,
-      tipoIteraccion, idClasificadorCliente)
       setDesplegable(!desplegable)
       setValorSeleccionado(valorSeleccionado)
       validar(valorMostrar, desc, valor, valorPadre, tipoIteraccion, idClasificadorCliente)
