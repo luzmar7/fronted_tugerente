@@ -32,7 +32,7 @@ const SearchH = ({ placeholderCategoria, placeholderItems, valorCategoria, valor
     placeholderItems : 'Items',
     valorCategoria : '',
     valorItem : '',
-    visibleCategoria: true,
+    visibleCategoria: false,
     visibleItem: true
   }
 

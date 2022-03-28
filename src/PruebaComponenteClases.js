@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 import ComboBox from './Componentes/ComboBoxClases/ComboBox'
 import ComboBoxH from './Componentes/ComboBoxHooks/ComboBoxH'
+const axios = require('axios')
 
-class PruebaComponente extends Component {
+class PruebaComponenteClases extends Component {
   /**
    * Define las Propiedades de la pantalla
    */
@@ -18,34 +18,50 @@ class PruebaComponente extends Component {
       lista: this.props.lista
     }
     this.FormatearLista = this.FormatearLista.bind(this)
+    this.getEmpresas = this.getEmpresas.bind(this)
+    this.formatearRespuesta = this.formatearRespuesta.bind()
   }
 
   static defaultProps = {
-    lista: [
-      { codigo: 1, nombre: 'MacDonals', razonSocial: 'Restaurantes MacDonals S.A.', nit:'117878956', telefono:'2224471' },
-      { codigo: 2, nombre: 'AirEuropa', razonSocial: 'Air Europa Lineas Areas S.A.', nit:'226868478', telefono:'3335569' },
-      { codigo: 3, nombre: 'FarmaCorp', razonSocial: 'Farmacias corp S.A.', nit:'335151243', telefono:'4442271' },
-      { codigo: 4, nombre: 'Toyosa', razonSocial: 'Toyosa AAA S.A.', nit:'443232796', telefono:'5559981' },
-      { codigo: 5, nombre: 'Samsung', razonSocial: 'Samsung S.R.L', nit:'556969497', telefono:'6661179' },
-      { codigo: 6, nombre: 'Imcruz', razonSocial: 'Imcruz S.R.L', nit:'667171321', telefono:'7772122' },
-      { codigo: 7, nombre: 'PilAndina', razonSocial: 'Pil Andina S.R.L', nit:'774141224', telefono:'8883233' }
-    ]
+    lista: []
   }
-  componentWillMount () {
-    console.log('componentWillMount, lista filtrado', this)
-    const pLista = this.FormatearLista(this.state.lista, {id:'codigo', categoria: 'Empresas', idItem: 'codigo', valor: 'codigo', desc: 'nombre' })
-    console.log('sasuke lista', pLista)
+  async componentWillMount () {
+    const algo = await this.getEmpresas()
     this.setState({
-      lista: pLista,
+      lista: algo,
     })
+  }
+
+  getEmpresas = async () => {
+    try {
+      const { data } = await axios.get(`https://fb-api-tugerente-default-rtdb.firebaseio.com/empresas.json`)
+      const respForm = this.formatearRespuesta(data)
+      const pLista = this.FormatearLista(respForm, {id:'codigo', categoria: 'Empresas', idItem: 'codigo', valor: 'codigo', desc: 'nombre' })
+      return pLista
+    } catch (error) {
+      console.error(error)
+      return error
+    }
+  }
+
+  /**
+   * Metodo para formatear repuestas
+   */
+  formatearRespuesta(respData) {
+    const arrayFormateado = []
+    for(let city in respData)
+    {
+      let obj = {...respData[city]}
+      obj.fbCodigo = city
+      arrayFormateado.push(obj)
+    }
+    return arrayFormateado
   }
 
   /**
  * Metodo para Formatear los datos del Clasificador Multas
  */
   FormatearLista (pLista = [], pParametros = {}) {
-    console.log('FormatearDatosListaFiltrado', pLista, pParametros)
-
     const rLista = pLista.map( data => {
       return {
       id: data[pParametros.id],
@@ -54,9 +70,7 @@ class PruebaComponente extends Component {
       valor: data[pParametros.valor].toString(),
       desc: data[pParametros.desc].toString(),
       }
-    }
-
-    )
+    })
     return rLista
   }
   /**
@@ -65,7 +79,6 @@ class PruebaComponente extends Component {
   render () {
     return (
       <div >
-
         <ComboBox ref='TipoMulta'
           etiqueta={'Hola Mundo'}
           visible={true}
@@ -73,18 +86,18 @@ class PruebaComponente extends Component {
           valor={1}
           filtroItem= {'desc'}
         />
-        <ComboBoxH 
+        <ComboBoxH
           etiqueta={'HOOKS'}
           visible={true}
           datos={this.state.lista}
           valor={1}
-          filtroItem= {''}
           visibleItem={true}
           placeholderItems={'hola mundo'}
+          valorMostrado={'MacDonals'}
         />
       </div>
     )
   }
 }
 
-export default PruebaComponente
+export default PruebaComponenteClases

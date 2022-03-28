@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import PruebaComponente from './PruebaComponente';
+// import PruebaComponenteClases from './PruebaComponenteClases';
+import PruebaComponentesHooks from './PruebaComponenteHooks';
 
 ReactDOM.render(
-  <PruebaComponente />,
+  // <PruebaComponenteClases />,
+  <PruebaComponentesHooks />,
   document.getElementById('root')
 );
 

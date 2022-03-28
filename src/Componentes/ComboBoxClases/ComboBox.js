@@ -86,6 +86,7 @@ class ComboBox extends Component {
 
   constructor (props) {
     super(props)
+    console.log('COMBO BOX NOMRAL', props)
 
     this.state = {
       placeholderCategoria: this.props.placeholderCategoria,

@@ -11,6 +11,7 @@ import './ComboBoxH.scss'
 
 
 const ComboBoxH = (props) => {
+  console.log('COMBO BOX SASUKE H', props)
   /**
    * datos: Array que recive del Padre el array debe estar declarado de la siguiente manera:
    todo let lista = [
@@ -53,7 +54,6 @@ const ComboBoxH = (props) => {
    */
   const [placeholderCategoria, setPlaceholderCategoria] = useState(props.placeholderCategoria);
   const [placeholderItems, setPlaceholderItems] = useState(props.placeholderItems);
-  const [datos, setDatos] = useState(props.datos);
   const [filtroCategoria, setFiltroCategoria] = useState('Empresas');
   const [filtroItem, setfiltroItem] = useState(props.filtroItem);
   const [valorSeleccionado, setValorSeleccionado] = useState(props.valorSeleccionado);
@@ -71,8 +71,8 @@ const ComboBoxH = (props) => {
   const [estiloCampo, setEstiloCampo] = useState(props.estiloCampo);
   const [tipoIteraccion, setTipoIteraccion] = useState(props.tipoIteraccion);
   const [idClasificadorCliente, setIdClasificadorCliente] = useState(props.idClasificadorCliente);
-  console.log(setPlaceholderCategoria, setPlaceholderItems, setDatos, setEtiqueta, habilitado, setHabilitado, setVisible, mensajeError, setMensajeError, setVisibleCategoria, setVisibleItem, setEstiloCampo)
-  
+  console.log('SASUKE DATOS', props.datos)
+ 
   ComboBoxH.propTypes = {
     placeholderCategoria: PropTypes.string,
     placeholderItems: PropTypes.string,
@@ -128,14 +128,14 @@ const ComboBoxH = (props) => {
   }
   useEffect (() => {
     console.log('SASUKE USEFECT')
-    obtenerSeleccionado(valor, valorPadre, datos, tipoIteraccion, idClasificadorCliente)
+    obtenerSeleccionado(valor, valorPadre, props.datos, tipoIteraccion, idClasificadorCliente)
   },[])
 
   /**
    * Metodo que recibe el valor enviado desde el padre para mostrarlo en la pantalla.
    */
   const obtenerSeleccionado = (pValor, pValorPadre, pDatos, ptipoIteraccion = null, pidClasificadorCliente = null) => {
-    console.log('obtenerSeleccionado', pValor, pValorPadre)
+    console.log('obtenerSeleccionado SASUKE...', pValor, pValorPadre)
     pValor = (pValor !== null) ? ConvertirCadena(pValor) : pValor
     let datos = pDatos
     let sw = true
@@ -147,10 +147,12 @@ const ComboBoxH = (props) => {
         setValorPadre(pValorPadre)
         setTipoIteraccion(ptipoIteraccion)
         setIdClasificadorCliente(pidClasificadorCliente)
+
         break
       }
     }
   }
+
 
   /**
    * Se encarga de devolver la cadena vacia o con toString()
@@ -231,7 +233,7 @@ const ComboBoxH = (props) => {
         </div>
         <div>
           <ContenedorCategoriaH
-            categoria={datos}
+            categoria={props.datos}
             filtroCategoria={filtroCategoria}
             filtroItem={filtroItem}
             onClickItem={obtenerDatoItem}

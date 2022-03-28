@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import CategoriaH from './CategoriaH'
 const uuid = require('uuid')
 const ContenedorCategoriaH = ({categoria, filtroCategoria, filtroItem, onClickItem, estiloCampo}) => {
+    console.log('CATEGORIA H SASUKE', categoria)
+
     /**
     * categoria: Array que recibe del Padre.
     * filtroCategoria: Variable que maneja el input de las categorias.
