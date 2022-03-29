@@ -4,6 +4,7 @@ import './index.css';
 // import PruebaComponenteClases from './PruebaComponenteClases';
 import PruebaComponentesHooks from './PruebaComponenteHooks';
 
+import 'font-awesome/css/font-awesome.min.css';
 ReactDOM.render(
   // <PruebaComponenteClases />,
   <PruebaComponentesHooks />,

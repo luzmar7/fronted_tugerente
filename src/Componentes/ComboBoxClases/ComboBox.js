@@ -6,8 +6,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Search from './Search'
 import ContendorCategoria from './ContenedorCategoria'
+import PopUp from './PopUp/PopUp'
+import Button from './PopUp/Button'
+import CampoTexto from './PopUp/CampoTexto'
 import './ComboBox.scss'
-
+const axios = require('axios')
 class ComboBox extends Component {
 
   /**
@@ -81,7 +84,9 @@ class ComboBox extends Component {
     visibleItem: PropTypes.bool,
     estiloCampo: PropTypes.object,
     tipoIteraccion: PropTypes.string,
-    idClasificadorCliente: PropTypes.string
+    idClasificadorCliente: PropTypes.string,
+    mostrarModal: PropTypes.bool,
+    nombreEmpresa: PropTypes.string,
   }
 
   constructor (props) {
@@ -109,13 +114,18 @@ class ComboBox extends Component {
       visibleItem: this.props.visibleItem,
       estiloCampo: this.props.estiloCampo,
       tipoIteraccion: this.props.tipoIteraccion,
-      idClasificadorCliente: this.props.idClasificadorCliente
+      idClasificadorCliente: this.props.idClasificadorCliente,
+      mostrarModal: this.props.mostrarModal,
+      nombreEmpresa: this.props.nombreEmpresa
     }
     this.filtrarCategoria = this.filtrarCategoria.bind(this)
     this.filtrarItem = this.filtrarItem.bind(this)
     this.obtenerDatoItem = this.obtenerDatoItem.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.obtenerSeleccionado = this.obtenerSeleccionado.bind(this)
+    this.abrirModal = this.abrirModal.bind(this)
+    this.contenidoModalContrato = this.contenidoModalContrato.bind(this)
+    this.guardarDatos = this.guardarDatos.bind(this)
   }
 
   static defaultProps = {
@@ -124,6 +134,7 @@ class ComboBox extends Component {
     datos: [],
     filtroCategoria: '',
     filtroItem: '',
+    mostrarModal: false,
     valorSeleccionado: '',
     valorMostrado: 'Seleccione...',
     etiqueta: 'Etiqueta',
@@ -137,7 +148,8 @@ class ComboBox extends Component {
     visibleItem: true,
     estiloCampo: {},
     tipoIteraccion: null,
-    idClasificadorCliente: null
+    idClasificadorCliente: null,
+    nombreEmpresa: ''
   }
 
   componentWillMount () {
@@ -227,6 +239,10 @@ class ComboBox extends Component {
     if (nextProps.idClasificadorCliente !== null) {
       this.setState({ idClasificadorCliente: nextProps.idClasificadorCliente })
     }
+
+    if (nextProps.mostrarModal !== null) {
+      this.setState({ mostrarModal: nextProps.mostrarModal })
+    }
   }
   /**
    * Funcion que valida los datos del array del padre como el valor, desc.
@@ -293,7 +309,8 @@ class ComboBox extends Component {
    */
   filtrarItem (valor) {
     this.setState({
-      filtroItem: valor.target.value
+      filtroItem: valor.target.value,
+      mostrarModal: false
     })
   }
 
@@ -339,19 +356,61 @@ class ComboBox extends Component {
   handleOnClick (e) {
     e.preventDefault()
     if (this.state.habilitado) {
-      this.refs.Search.clear()
       this.setState({
-        filtroCategoria: '',
-        filtroItem: '',
+        mostrarModal: false,
         desplegable: !this.state.desplegable
       })
     }
   }
+  /**
+   * Abrir Modal para crear un nuevo registro
+   */
+  abrirModal (e) {
+    this.setState({ mostrarModal: true })
+  }
+  /**
+   * contenido del modalcito
+   */
+  guardarDatos = async () => {
+    if(this.refs.Codigo.state.valor !== '' && this.refs.Nit.state.valor !== '' && this.refs.Nombre.state.valor !== '' && this.refs.Telefono.state.valor !== '') {
+      const newEmpresa = {
+        codigo: this.refs.Codigo.state.valor,
+        nit: this.refs.Nit.state.valor,
+        nombre: this.refs.Nombre.state.valor,
+        telefono: this.refs.Telefono.state.valor
+      }
+      try {
+        const { data } = await axios.post(`https://fb-api-tugerente-default-rtdb.firebaseio.com/empresas.json`, newEmpresa)
+        const resPeticion = `Se creo el registro ${data.name}`
+        alert(resPeticion)
+        window.location.reload()
+      } catch (error) {
+        console.error(error)
+      }
 
+    } else {
+      alert('Ingrese todos los datos')
+    }
 
+  }
+
+  contenidoModalContrato () {
+    return <div className={'containerModal'}>
+      <div className={'containerB'}><i className="fa fa-pencil-square-o fa-lg"></i> DATOS DE LA EMPRESA </div>
+        <CampoTexto ref='Codigo' etiqueta={'Codigo: '} placeholder={'Ingrese el codigo'} />
+        <CampoTexto ref='Nit' etiqueta={'Nit: '} placeholder={'Ingrese el nit'}/>
+        <CampoTexto ref='Nombre' etiqueta={'Nombre: '} placeholder={'Ingrese el nombre'} />
+        <CampoTexto ref='Telefono' etiqueta={'Telefono: '} placeholder={'Ingrese el telefono'}/>
+        <div className={'containerA'}>
+          <Button tipo={'success'} texto={'Guardar'}  onclick={this.guardarDatos}/>
+          <Button tipo={'danger'} texto={'Cancelar'}  />
+        </div>
+    </div>
+  }
 
   render () {
     return (
+      <>
       <div className='containerGeneral' hidden={!this.state.visible}>
         <div className={'listaFiltradoCabecera'}
           onClick={this.handleOnClick} >
@@ -376,7 +435,9 @@ class ComboBox extends Component {
               visibleCategoria={this.state.visibleCategoria}
               visibleItem={this.state.visibleItem}
             />
+             <Button ref='RegistrarSP' tipo={'info'} texto={'Crear Nuevo Registro'}  onclick={this.abrirModal} />
           </div>
+         
           <div>
             <ContendorCategoria
               categoria={this.state.datos}
@@ -388,6 +449,11 @@ class ComboBox extends Component {
           </div>
         </div>
       </div>
+      <PopUp ref='ModalContratos' contenido={this.contenidoModalContrato()} cerrar={false}
+          mostrarModal={this.state.mostrarModal}
+          titulo={'soy un modalsito'}
+          />
+      </>
     )
   }
 }

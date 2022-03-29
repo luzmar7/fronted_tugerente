@@ -3,8 +3,11 @@
  * Sub Componente encargado de comunicar a los otros subcomponentes.
  */
  import React, { Component } from 'react'
+
  import PropTypes from 'prop-types'
  import Categoria from './Categoria'
+ 
+ 
  const uuid = require('uuid')
  class ContendorCategoria extends Component {
    /**

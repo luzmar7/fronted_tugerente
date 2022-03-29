@@ -1,0 +1,291 @@
+.ContenidoComponenteModalAgenda {
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  z-index: 200;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#estadoInicialMOSTRAR {
+  top: 0px;
+}
+
+#estadoInicialOCULTAR {
+  top: 1000px;
+}
+
+#abrirModal {
+  //top: -1000px;
+  animation-name: abrirModal;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+@keyframes abrirModal {
+  from {
+      top: 1000px;
+  }
+  to {
+      top: 0px;
+  }
+}
+
+
+#cerrarModal {
+  animation-name: cerrarModal;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+}
+@keyframes cerrarModal {
+  from {
+      top: 0;
+  }
+  to {
+      top: 1000px;
+  }
+}
+
+.backgroundModalGenerico {
+  position: fixed;
+  top: 0;
+  left: -15px;
+  height: 100vh;
+  width: 110vw;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#backgroundModalGenericoInicialMOSTRAR {
+  visibility: visible;
+}
+
+#backgroundModalGenericoInicialOCULTAR {
+  visibility: hidden;
+}
+
+#backgroundModalGenericoMOSTRAR {
+  visibility: visible;
+}
+
+#backgroundModalGenericoOCULTAR {
+  visibility: hidden;
+}
+
+.contenedorFlexDiv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  //height: 100vh;
+  //background-color: #ca1452;
+  background-color: transparent;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+
+  .ContenidoModalGenerico {
+      border-radius: 10px;
+      //left: 0;
+      //left: 50%;
+      width: 50%;
+      background-color: #fff;
+      //overflow-y: auto;
+      //overflow-x: hidden;
+      //transform: translate(-50%, -50%);
+      border: solid 2px;
+      max-height: 600px;
+      position: relative;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      .CabeceraModal {
+          background-image: url('./images/tuGerente2.jpg');
+          background-color: teal;
+          width: 100%;
+          margin: 0;
+          margin-bottom: 10px;
+          padding: 10px 0;
+          color: #fff;
+          text-align: center;
+          position: relative;
+          height: 75px;
+          border-radius: 5px 5px 0 0;
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          justify-content: center;
+
+          .contenedorImagenCabecera {
+              position: absolute;
+              max-height: 75px;
+              left: 0;
+              right: 0;
+              top: 0;
+              overflow: hidden;
+
+              img {
+                  width: 100%;
+                  height: 80%;
+                  opacity: 0.5
+              }
+          }
+
+          .mascaraColor {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              opacity: 0.6;
+              height: 75px;
+              border-radius: 5px 5px 0 0;
+          }
+
+          .tituloCabecera {
+              position: relative;
+              opacity: 1;
+              border-radius: 5px 5px 0 0;
+
+              h1 {
+                  margin: 0;
+              }
+
+          }
+          i {
+            background-color: black;
+            width: 100%;
+
+          }
+
+      }
+
+      .ContenidoPadre {
+          //background-color: blue;
+          overflow-y: auto;
+          overflow-x: hidden;
+          max-height: 450px;
+      }
+
+      .cerrarModalAgenda {
+          position: absolute;
+          top: 6px;
+          right: 6px;
+          border: solid 2px #31708f;
+          width: 22px;
+          height: 22px;
+          color:#31708f;
+          border-radius: 50%;
+          display: flex;
+          align-content: center;
+          justify-content: center;
+          transition: 0.2s;
+          opacity: 0.8;
+      }
+
+      .cerrarModalAgenda:hover {
+          opacity: 1;
+      }
+  }
+}
+
+/* Estado Inicial */
+
+#estadoGenericoInicialMOSTRAR {
+  top: 0;
+  // top: 50%;
+  visibility: visible;
+}
+
+#estadoGenericoInicialOCULTAR {
+  top: -1000px;
+  visibility: hidden;
+}
+
+#estadoGenericoMOSTRAR {
+  animation-name: abrirModalGenerico;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+
+@keyframes abrirModalGenerico {
+  0% {
+      top: -1000px;
+      opacity: 0;
+  }
+  60% {
+      opacity: 0;
+  }
+  100% {
+      top: 0;
+      opacity: 1;
+  }
+}
+
+#estadoGenericoOCULTAR {
+  animation-name: cerrarModalGenerico;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+}
+
+@keyframes cerrarModalGenerico {
+  0% {
+      top: 0;
+      opacity: 1;
+  }
+  25% {
+      opacity: 0;
+  }
+  100% {
+      top: -1000px;
+      opacity: 0;
+  }
+}
+
+#backgroundModalGenericoInicialMOSTRAR {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Background del Modal */
+
+#backgroundModalGenericoInicialOCULTAR {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#backgroundModalGenericoMOSTRAR {
+  animation-name: abrirBackground;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+
+@keyframes abrirBackground {
+  from {
+      opacity: 0;
+      visibility: hidden;
+  }
+  to {
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+#backgroundModalGenericoOCULTAR {
+  animation-name: cerrarBackground;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+}
+
+@keyframes cerrarBackground {
+  from {
+      opacity: 1;
+      visibility: visible;
+  }
+  to {
+      opacity: 0;
+      visibility: hidden;
+  }
+}

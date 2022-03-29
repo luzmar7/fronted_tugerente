@@ -1,0 +1,135 @@
+@import "../../../temas/default-mixins";
+.btn-color-principal {
+  background: #31708f;
+  color: #fff;
+  pointer-events: initial;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: lighten(rgb(12, 136, 126), 10%);
+    color: #fff;
+    outline: 0;
+  }
+  &:focus{
+    border:none;
+    outline: 0;
+  }
+}
+.btn-color-success {
+  background: #009177;
+  color: #fff;
+  pointer-events: initial;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(#009177, 10%);
+    outline: 0;
+  }
+  &:focus{
+    border:none;
+    outline: 0;
+  }
+}
+.btn-color-info-icono {
+  background: #F89406;
+  color: #fff;
+  border-right: 2px solid darken(#F89406, 10%);
+  pointer-events: initial;
+  font-size: 14px;
+  font-weight:bold;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: darken(#F89406, 10%);
+    border-right: 2px solid darken(#F89406, 1%);
+  }
+  &:focus{
+    outline: 0;
+  }
+}
+.btn-color-warning-icono {
+  background: #F89406;
+  border-right: 2px solid darken(#F89406, 10%);
+  pointer-events: initial;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: darken(#F89406, 5%);
+    border-right: 2px solid darken(#F89406, 5%);
+  }
+  &:focus{
+    outline: 0;
+  }
+}
+
+.btn-color-danger-icono {
+  background: #f25353;
+  color: #fff;
+  pointer-events: initial;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: darken(#f25353, 5%);
+    border-right: 2px solid darken(#f25353, 5%);
+  }
+  &:focus{
+    outline: 0;
+  }
+}
+
+
+.btn-color-defecto {
+  background: gray;
+  color: #fff;
+  pointer-events: initial;
+  font-size: 18px;
+  font-weight: bold;
+  &:hover {
+    background: lighten(gray, 10%);
+    color: #fff;
+    outline: 0;
+  }
+}
+.boton-icono-url {
+  width: auto !important;
+  height:auto !important;
+  background: transparent !important;
+  border: none;
+  padding: 0px;
+  &:hover {
+    border: none;
+    padding: 0;
+  }
+  & > img {
+    width: 50px;
+    height: 50px;
+  }
+}
+.btn-bloqueado-icono {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  border: none !important;
+  opacity: 0.7;
+  //background: transparent !important;
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+}

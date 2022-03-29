@@ -1,0 +1,90 @@
+@import "../../../temas/default-mixins";
+// Estilos de campo Texto
+.inputLogin {
+  @include navegador('firefox') {
+    padding: 0;
+  }
+  padding: 25px;
+  font-size: 1.2em;
+  &::placeholder {
+    color: #fff !important;
+    font-size: 1em;
+  }
+}
+
+.inputIcono {
+  position: absolute;
+  top: 40%;
+  font-size: 1.2em;
+  left: 40px;
+}
+.containerCampoTexto{
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: .5em;
+  padding-right: .5em;
+
+  .alineadoCampoTextoIzquierda {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .alineadoCampoTextoDerecha {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .label-style {
+    text-align: left;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    color: #4F4D3F;
+  }
+  .input-style{
+    -webkit-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    height: 20px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background: transparent;
+
+    @include navegador('msie'){
+      height: inherit;
+    }
+
+  }
+  .inhabilitadoInput {
+    background: rgba(193, 193, 193, 0.32) !important;
+  }
+  .mensajeEstado{
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .error{
+    color: tomato;
+    position: absolute;
+  }
+  .success{
+    color: lightgreen;
+  }
+  .showPasswordIcon{
+    position: absolute;
+    margin-top: -40px;
+    margin-right: 35px;
+    font-size: 1.5em;
+    cursor: pointer;
+    right:0;
+    .iconoPasswordNormal {
+      position: relative;
+      //top: 20px;
+    }
+  }
+}

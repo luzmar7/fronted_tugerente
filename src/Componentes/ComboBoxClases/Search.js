@@ -4,6 +4,7 @@
  */
  import React, { Component } from 'react'
  import PropTypes from 'prop-types'
+
  class Search extends Component {
  
    /**
@@ -43,7 +44,6 @@
      }
      this.handleOnChangeCategoria = this.handleOnChangeCategoria.bind(this)
      this.handleOnChangeItem = this.handleOnChangeItem.bind(this)
-     this.presionoEnter = this.presionoEnter.bind(this)
    }
  
    static defaultProps = {
@@ -123,11 +123,6 @@
      this.inputCategoria.value = ''
      this.inputIem.value = ''
    }
-
-
-  presionoEnter (valor) {
-    console.log('preciono enter', valor)
-  }
  
    render () {
      return (
@@ -146,17 +141,7 @@
              type='text'
              placeholder={this.state.placeholderItems}
              onChange={this.state.onChangeItem}
-             onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                  this.setState({ message: e.target.value },
-                  () => {
-                      alert(this.state.message);
-                  });
-              }
-          }}
            />
-
-           
          </div>
        </div>
      )

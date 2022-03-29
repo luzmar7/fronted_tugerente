@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ComboBox from './Componentes/ComboBoxClases/ComboBox'
 import ComboBoxH from './Componentes/ComboBoxHooks/ComboBoxH'
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 const axios = require('axios')
+
+import 'font-awesome/css/font-awesome.min.css';
 
 class PruebaComponenteClases extends Component {
   /**
@@ -95,6 +98,8 @@ class PruebaComponenteClases extends Component {
           placeholderItems={'hola mundo'}
           valorMostrado={'MacDonals'}
         />
+              <FaHeart />
+      <FaRegHeart />
       </div>
     )
   }
