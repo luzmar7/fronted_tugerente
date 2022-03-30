@@ -126,6 +126,7 @@ class ComboBox extends Component {
     this.abrirModal = this.abrirModal.bind(this)
     this.contenidoModalContrato = this.contenidoModalContrato.bind(this)
     this.guardarDatos = this.guardarDatos.bind(this)
+    this.cancelar = this.cancelar.bind(this)
   }
 
   static defaultProps = {
@@ -393,6 +394,9 @@ class ComboBox extends Component {
     }
 
   }
+  cancelar(){
+    this.setState({ mostrarModal: false })
+  }
 
   contenidoModalContrato () {
     return <div className={'containerModal'}>
@@ -403,7 +407,7 @@ class ComboBox extends Component {
         <CampoTexto ref='Telefono' etiqueta={'Telefono: '} placeholder={'Ingrese el telefono'}/>
         <div className={'containerA'}>
           <Button tipo={'success'} texto={'Guardar'}  onclick={this.guardarDatos}/>
-          <Button tipo={'danger'} texto={'Cancelar'}  />
+          <Button tipo={'danger'} texto={'Cancelar'}  onclick={this.cancelar}/>
         </div>
     </div>
   }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import CampoLabel from './Componentes/CampoLabel/CampoLabel'
 import ComboBox from './Componentes/ComboBoxClases/ComboBox'
 import ComboBoxH from './Componentes/ComboBoxHooks/ComboBoxH'
 
@@ -55,15 +56,60 @@ const PruebaComponentesHooks = () => {
       })
       return rLista
     }
-  
+    let estilo =  {
+      fondo: '#CDCDCD',
+      color: '#353535',
+      tamanio: 30
+    }
+    let estilo2 =  {
+      fondo: '#CDCDCD',
+      color: '#353535',
+      tamanio: 25
+    }
+    let estilo3 =  {
+      fondo: '#CDCDCD',
+      color: '#353535',
+      tamanio: 20
+    }
+    let estilo4 =  {
+      color: '#353535',
+      tamanio: 16
+    }
   return (
+
     <div>
+      <center>
+      <CampoLabel 
+        titulo={'PRUEBA FRONTEND - TuGerente'}
+        estiloEtiqueta={estilo}
+      />
+      <CampoLabel 
+        titulo={'Mariluz Vargas Hilari'}
+        estiloEtiqueta={estilo2}
+      />
+      <CampoLabel 
+        titulo={'luzmar7.luz@gmail.com'}
+        estiloEtiqueta={estilo3}
+      />
+      </center>
+      <br />
+
+      <CampoLabel 
+        titulo={'Componente realizado en base a CLASES, consulta un servicio de FIREBASE para listar, contiene el POP-UP para ingresar un nuevo registro hacia un servicio de FIREBASE y la busqueda de los elementos.'}
+        estiloEtiqueta={estilo4}
+      />
+
       <ComboBox 
         etiqueta={'CLASES'}
         placeholderItems={'buscar....'}
         visible={true}
         datos={lista}
         valor={1}
+      />
+
+      <CampoLabel 
+        titulo={'Componente realizado en base a HOOKS, consulta un servicio de FIREBASE para listar y la busquedad de los elementos.'}
+        estiloEtiqueta={estilo4}
       />
       <ComboBoxH
         etiqueta={'HOOKS'}
